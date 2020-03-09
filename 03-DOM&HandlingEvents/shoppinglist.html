@@ -9,18 +9,23 @@
 <body>
     <h1>Shopping List</h1>
     <p>
-        New item: <input type="text" name="item">
-        <button type="button">Add</button>
+        New item: <input id="XD" type="text" name="item">
+        <button type="button" onclick="addElement()">Add</button>
     </p>
     <h3>List of items</h3>
-    <ol>
+    <ol id="list1">
         <li>cooking oil</li>
         <li>breakfast cereal</li>
         <li>bread</li>
     </ol>
 
     <script>
-    	// a JavaScript code here ...
+    	function addElement(){
+            var item = document.getElementById("XD").value;
+            var element = document.createElement("li");
+            document.getElementById("list1").appendChild(element).innerHTML = item;
+
+        }
 
     </script>
 </body>
