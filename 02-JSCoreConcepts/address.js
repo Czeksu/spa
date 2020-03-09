@@ -7,7 +7,7 @@ zip = '30-781';
 country = 'Poland';
 
 console.log(title+' '+name+' '+surname+'\nul. '+street+'\n'+zip+' '+city+'\n'+country+'\n')
-console.log(`${title} ${name} ${surname}\nul.${street}\n${zip} ${city}\n${country}`)
+console.log(`${title} ${name} ${surname}\nul.${street}\n${zip} ${city}\n${country}`) 
 
 /* 
 dr Mateusz Kubicki
