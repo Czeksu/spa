@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kursy walut</title>
+    <meta charset="UTF-8">
+</head>
+<body onload="connect()">
+    <h1>Kursy walut</h1>
+    <p id="eur"></p>
+    <p id="usd"></p>
+    <p id="gbp"></p>
+    <script>
+        function connect(){
+            let i = 0;
+            let currencies = ['eur', 'usd', 'gbp']
+            currencies.forEach(showValues);
+            function showValues(){
+                let cur = currencies[i];
+                let link = `http://api.nbp.pl/api/exchangerates/rates/a/${cur}?format=json`
+                let xmlHttp = new XMLHttpRequest();
+                xmlHttp.open('GET', link, true);
+                xmlHttp.onreadystatechange = function () {
+                    if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+                        let data = JSON.parse(xmlHttp.responseText);
+                        document.getElementById(`${cur}`).innerHTML = "Kurs "  + data.code + " wynosi: " + data.rates[0].mid + " PLN";
+                    }
+                }
+                xmlHttp.send()
+                i++;
+            }
+        }
+    </script>
+</body>
+</html>
