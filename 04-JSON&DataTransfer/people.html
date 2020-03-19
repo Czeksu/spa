@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>People</title>
+		<meta charset="UTF-8">
+	</head>
+	<body>
+		<h1>People</h1>
+		<p>Click the button to show the list of people</p>
+		<input type="button" onclick="connect()" value="CLICK ME!">
+		<p id="people"></p>
+
+		<script>
+
+			function connect(){
+				let xmlHttp = new XMLHttpRequest();
+				let file = "./people.json"; 
+				
+				xmlHttp.onreadystatechange = function(){
+					if(this.readyState == 4 && this.status == 200){
+						let data = JSON.parse(this.responseText);
+						document.getElementById("people").innerHTML = data.name + " " + data.surname;
+					}
+					
+				};
+			
+			xmlHttp.open("GET", file);
+			xmlHttp.send();
+
+			}
+
+		</script>
+
+	</body>
+</html>
