@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gold prices from last 10 days</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.css" integrity="sha256-IvM9nJf/b5l2RoebiFno92E5ONttVyaEEsdemDC6iQA=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css" integrity="sha256-aa0xaJgmK/X74WM224KMQeNQC2xYKwlAt08oZqjeF0E=" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.js" integrity="sha256-8zyeSXm+yTvzUN1VgAOinFgaVFEFTyYzWShOy9w7WoQ=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js" integrity="sha256-TQq84xX6vkwR0Qs1qH5ADkP+MvH0W+9E7TdHJsoIQiM=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js" integrity="sha256-nZaxPHA2uAaquixjSDX19TmIlbRNCOrf5HO1oHl5p70=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha256-R4pqcOYV8lt7snxMQO/HSbVCFRPMdrhAFMH+vr9giYI=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <canvas id="myChart" width="100%" height="100%"></canvas>
+    <script>
+    let ctx = document.getElementById('myChart').getContext('2d');
+    let XMLHttp = new XMLHttpRequest();
+    let link = 'http://api.nbp.pl/api/cenyzlota/last/10/?format=json';
+	XMLHttp.onreadystatechange = function () {
+	if (this.readyState==4 && this.status==200){
+	let data = JSON.parse(this.responseText);
+    let myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: [data[0].data, data[1].data,data[2].data, data[3].data, data[4].data, data[5].data, data[6].data, data[7].data, data[8].data, data[9].data],
+        datasets: [{
+            label: 'Gold prices from last 10 days',
+            data: [data[0].cena,data[1].cena,data[2].cena,data[3].cena,data[4].cena,data[5].cena,data[6].cena,data[7].cena,data[8].cena,data[9].cena],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(51,204,51,0.2)',
+                'rgba(102,51,51,0.2)',
+                'rgba(102,204,255,0.2)',
+                'rgba(51,0,51,0.2)'
+                ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)',
+                'rgba(51,204,51,1)',
+                'rgba(102,51,51,1)',
+                'rgba(102,204,255,1)',
+                'rgba(51,0,51,1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+    });
+		}
+		};
+    
+	XMLHttp.open('GET', link);
+	XMLHttp.send();
+    </script>
+</body>
+</html>

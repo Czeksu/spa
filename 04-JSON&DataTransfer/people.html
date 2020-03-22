@@ -8,27 +8,32 @@
 		<h1>People</h1>
 		<p>Click the button to show the list of people</p>
 		<input type="button" onclick="connect()" value="CLICK ME!">
-		<p id="people"></p>
+		<ol id="peopleList"></ol>
 
 		<script>
 
 			function connect(){
 				let xmlHttp = new XMLHttpRequest();
 				let file = "./people.json"; 
-				
+				xmlHttp.open("GET", file);
 				xmlHttp.onreadystatechange = function(){
 					if(this.readyState == 4 && this.status == 200){
 						let data = JSON.parse(this.responseText);
-						document.getElementById("people").innerHTML = data.name + " " + data.surname;
-					}
-					
-				};
-			
-			xmlHttp.open("GET", file);
+						addItem(data);	
+						}
+							
+				}
+		
 			xmlHttp.send();
-
 			}
-
+			function addItem(data){
+				for(i=0; i<data.length; i++){
+					let item = document.createElement("li");
+					let person = document.createTextNode(`${data[i].name} ${data[i].surname.toUpperCase()}, ${data[i].country}`);
+					item.appendChild(person);
+					document.getElementById("peopleList").appendChild(item);
+				}
+			}
 		</script>
 
 	</body>
