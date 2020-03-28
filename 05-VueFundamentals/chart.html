@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 </head>
 <body>
+  <div id="app">
+    <canvas id="langChart" width="300" height="100"></canvas>
+  </div>
   <script>
     var app = new Vue({
       el: '#app',
       data: {
-        films: [
+        languages: [
           {
             language: 'Python',
             popularity: 25.95
@@ -29,9 +34,36 @@
             language: 'Php',
             popularity: 7.37
           }
-        ] 
-      }
+        ],
+      },
+        mounted(){
+          let myChart = document.getElementById("langChart").getContext("2d");
+          this.languagesChart = new Chart(myChart, {
+						type: "bar",
+						data: {
+							labels: [],
+							datasets:[{
+								label: "Popularity",
+								data: [],
+								backgroundColor: [
+                					'rgba(255, 99, 132, 0.2)',
+                					'rgba(54, 162, 235, 0.2)',
+                					'rgba(255, 206, 86, 0.2)',
+                					'rgba(75, 192, 192, 0.2)',
+                          'rgba(75, 192, 192, 0.2)',
+            						],
+							}]
+						},
+						options: {}
+					})
+        },
+    })
+    app.languages.forEach(language => {
+      app.languagesChart.data.labels.push(language.popularity);
+      app.languagesChart.data.datasets[0].data.push(language.popularity);
+      app.languagesChart.update();              
     });
+    //app.chartAddData();
   </script>
 </body>
 </html>

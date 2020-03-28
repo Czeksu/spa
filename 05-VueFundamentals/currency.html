@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Currency</title>
+		<meta charset="UTF-8">
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+	</head>
+	<body>
+        <div id="app" style="border: 1px solid black;">
+			<table style="border: 1px solid black; border-collapse: collapse; font-size: small;">
+			  <thead>
+				<tr>
+                  <th style="border: 1px solid black;">currency</th>
+                  <th style="border: 1px solid black;">code</th>
+                  <th style="border: 1px solid black;">value</th>
+				</tr>
+			  </thead>
+			  <tbody>
+				<tr v-for="result in results">
+				  <td style="border: 1px solid black; " v-for="data in result">{{data}}</td>
+				</tr>
+			  </tbody>
+			</table>
+		  </div>
+	<script>
+	var app = new Vue({
+      el: '#app',
+      data: {
+		results: []
+	},
+	mounted() {
+		axios
+    	.get('http://api.nbp.pl/api/exchangerates/tables/A/')
+    	.then(response => (this.results = response.data[0].rates))
+    }
+    })
+    </script>
+	</body>
+</html>

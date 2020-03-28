@@ -4,6 +4,12 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 <body>
+  <div id="app" style="font-family: 'Courier New', Courier, monospace;">
+    <h3>DO WYKONANIA</h3>
+    <ol>
+      <li v-for="item in sortList">{{item}}</li>
+    </ol>
+  </div>
   <script>
     var app = new Vue({
       el: '#app',
@@ -12,10 +18,14 @@
           'Purchase two tickets to cinema',
           'Feed cat',
           'Pay cable bill',
-          'Go shopping'
-      }
+          'Go shopping']
+      },
+      computed: {
+        sortList(){
+          return this.todo.sort();
+        }
+    }
     });
   </script>
-
 </body>
 </html>

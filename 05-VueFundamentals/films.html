@@ -4,6 +4,21 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 <body>
+  <body>
+    <div id="app">
+      <table style="border: 1px solid black; border-collapse: collapse; font-size: small;">
+        <thead>
+          <tr>
+            <th v-for="(value, name) in films[0]" style="border: 1px solid black;">{{name}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="film in films">
+            <td v-for="data in film" style="border: 1px solid black;">{{data}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   <script>
     var app = new Vue({
       el: '#app',
@@ -35,8 +50,7 @@
           }
         ] 
         }
-      }
-    });
+      });
   </script>
 </body>
 </html>
