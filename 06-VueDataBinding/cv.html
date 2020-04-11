@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <h1>Curriculum Vitae</h1>
+    <h2>Imię</h2>
+    <input type="text" v-model="cv.name">
+    <h2>Nazwisko</h2>
+    <input type="text" v-model="cv.surname">
+    <h2>Płeć</h2>
+    <select v-model="cv.sex">
+      <option>Kobieta</option>
+      <option>Mężczyzna</option>
+    </select>
+    <h2>Wiek</h2>
+    <input type="number" v-model.number="cv.age">
+    <h2>Wykształcenie</h2>
+    <select v-model="cv.education">
+      <option >Brak</option>
+      <option >Podstawowe</option>
+      <option >Średnie</option>
+      <option >Wyższe</option>
+    </select>
+    <h3>Skills</h3>
+    <input type="checkbox" value="Komunikatywność" v-model="cv.skills">Komunikatywność<br>
+    <input type="checkbox" value="Znajomość pakietu Office" v-model="cv.skills">Znajomość pakietu Office<br>
+    <input type="checkbox" value="Prawo jazdy" v-model="cv.skills">Prawo jazdy<br>
+    <input type="checkbox" value="Dobra organizacja pracy" v-model="cv.skills">Dobra organizacja pracy<br><br><br>
+    <button type="button" @click="save()">Save</button>
+    <button type="button" @click="read()">Read</button>
+    <ol v-if="readButton">
+        <li v-for="(value, key) in read()">{{key}}:{{value}}</li>
+    </ol>
+  </div>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data:{
+          readButton: false,
+          cv:{
+            name:'',
+            surname:'',
+            age: 0,
+            sex:'',
+            education:'',
+            skills:[]
+      }},
+      methods:{
+          save(){
+            localStorage.setItem('cv', JSON.stringify(this.cv));
+          },
+          read(){
+            this.readButton = true;
+            return JSON.parse(localStorage.getItem('cv'));
+          }
+        }
+      }
+    );
+  </script>
+</body>
+</html>

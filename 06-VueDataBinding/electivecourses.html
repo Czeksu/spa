@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <input type="checkbox" value="Programowanie współbieżna"  v-model="subjects">Programowanie współbieżne<br>
+    <input type="checkbox" value="Programowanie aplikacji moblinych" v-model="subjects">Programowanie aplikacji moblinych<br>
+    <input type="checkbox" value="Pracownia programowania" v-model="subjects">Pracownia programowania<br>
+    <input type="checkbox" value="Wprowadzenie do baz danych" v-model="subjects">Wprowadzenie do baz danych<br>
+    <input type="checkbox" value="Modelowanie danych" v-model="subjects">Modelowanie danych<br>
+    <p>Wybrane przedmioty: {{subjects.length}}</p>
+  </div>
+<script>
+  var app = new Vue({
+    el: '#app',
+    data:{
+      subjects:[]
+    },
+  });
+</script>
+</body>
+</html>

@@ -11,9 +11,7 @@
     <button type="button" @click="add()">Add</button>
     <h3>To Do List</h3>
     <ol>
-      <li>...</li>
-      <li>...</li>
-      <li>...</li>
+      <li v-for="todo in todos" @dblclick="todos.splice(todos.indexOf(todo), 1)">{{todo}}</li>
     </ol>
   </div>
   <script>
@@ -24,7 +22,7 @@
         todos: []
       },
       methods: {
-        add: function() {
+        add(){
           this.todos.push(this.todo);
         }
       }
