@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <favourite-film title="SpiderMan" director="Sam Raimi" year=2002></favourite-film>
+        <favourite-film title="SpiderMan 2" director="Sam Raimi" year=2004></favourite-film>
+        <favourite-film title="SpiderMan 3" director="Sam Raimi" year=2007></favourite-film>
+    </div>
+<script>
+    Vue.component("favourite-film",{
+        props: {
+        title: String,
+        director: String,
+        year: Number
+    }, 
+    template: `
+    <div>
+        <h1>{{ title }}</h1>
+        <h2>{{ director }}</h2>
+        <h3>{{ year }}</h3>
+    </div>`
+    })  
+    new Vue({el: "#app"})
+</script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <counter></counter>
+</div>
+<script>
+  Vue.component('counter', {
+    data: function(){
+      return{
+        count: 0
+      }
+    },
+    methods: {
+        plusOne: function(){
+            this.count += 1;
+            return count;
+        },
+        minusOne: function() {
+            this.count -= 1;
+            return count;
+        }
+    },
+    template: `
+    <div>
+        <h1>{{ count }}</h1>
+        <button @click=plusOne()>+1</button>
+        <button @click=minusOne()>-1</button>
+    </div>`
+  })
+
+  new Vue({
+      el: "#app"
+    })
+</script>
+</body>
+</html>

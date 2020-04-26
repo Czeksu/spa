@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <binary :value="8"></binary>
+    <binary :value="170"></binary>
+    <binary :value="204"></binary>
+    <binary :value="3855"></binary>
+</div>
+<script>
+  Vue.component('binary', {
+    template: `
+    <p>{{ value }}(10)={{ toBin() }}(2)</p>`,
+    props: {
+        value: {
+            type: String,
+            required: true
+        }
+    },
+    methods: {
+      toBin (){
+        return (this.value).toString(2)
+      }
+  }
+  })
+  new Vue({el: "#app"})
+</script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <university></university>
+</div>
+<script>
+  Vue.component('university', {
+    data: function(){
+      return{
+        name: "Uniwersytet Ekonomiczny w Krakowie",
+        address: "Rakowicka 27, 31-510 Kraków"
+      }
+    },
+    template: `
+    <div>
+        <h1>{{ name }}</h1>
+        <h2>{{ address }}</h2>
+    </div>`
+  })
+  new Vue({
+      el: "#app"
+    })
+</script>
+</body>
+</html>

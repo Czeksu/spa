@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <currencies v-for="result in results" :currency=result></currencies>
+    </div>
+<script>
+  Vue.component('currencies', {
+    template: `<p>{{ currency }}</p>`,
+    props: {
+      currency: Object
+    }
+  })
+  new Vue({
+      el: "#app",
+      data: {
+		results: []
+	  },
+	  mounted() {
+		axios
+		.get('http://api.nbp.pl/api/exchangerates/tables/A/')
+		.then(response => (this.results = response.data[0].rates))
+		}
+      })
+</script>
+</body>
+</html>

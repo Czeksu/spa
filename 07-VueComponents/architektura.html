@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>Architektura von Neumanna</h1>
+        <h2>W architekturze tej komputer składa się z czterech głównych komponentów:</h2>
+        <ul>
+            <architecture v-for="component in components" :name="component"></architecture>
+        </ul>
+    </div>
+<script>
+  Vue.component('architecture', {
+    template: `<li>{{ name }}</li>`,
+    props: {
+        name: String
+    }
+  })
+  new Vue({
+      el: "#app",
+      data: {
+          components: ["pamięci komputerowej przechowującej dane programu oraz instrukcje programu; każda komórka pamięci ma unikatowy identyfikator nazywany jej adresem", 
+                       "jednostki sterującej odpowiedzialnej za pobieranie danych i instrukcji z pamięci oraz ich sekwencyjne przetwarzanie", 
+                       "jednostki arytmetyczno-logicznej odpowiedzialnej za wykonywanie podstawowych operacji arytmetycznych.", 
+                       "urządzeń wejścia/wyjścia służących do interakcji z operatorem"]
+      }
+      })
+</script>
+</body>
+</html>
